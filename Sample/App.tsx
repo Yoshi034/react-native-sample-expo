@@ -1,55 +1,56 @@
-import { StyleSheet, Text, View, Image } from "react-native";
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { FontAwesome } from "@expo/vector-icons";
+import NewsScreen from "./screens/NewsScreen";
+import DetailScreen from "./screens/DetailScreen";
+import WeatherScreen from "./screens/WeatherScreen";
 
-export default function App() {
+const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
+
+const NewsStack = () => {
   return (
-    <View style={styles.container}>
-      <View style={styles.box}>
-        <View style={styles.moziBox}>
-          <Text style={styles.text}>
-            かわいい犬の画像です。柴犬が飼いたいです。
-          </Text>
-          <Text style={styles.subText}>さくら</Text>
-        </View>
-        <View style={styles.gazoBox}>
-          <Image
-            style={{ width: 100, height: 100 }}
-            source={{ uri: "https://picsum.photos/id/237/200/300" }}
-          />
-        </View>
-      </View>
-    </View>
+    <Stack.Navigator>
+      <Stack.Screen name="ニューストップ" component={NewsScreen} />
+      <Stack.Screen name="詳細ページ" component={DetailScreen} />
+    </Stack.Navigator>
+  );
+};
+
+const WeatherStack = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="天気予報トップ" component={WeatherScreen} />
+    </Stack.Navigator>
+  );
+};
+
+const screenOptions = ({ route }) => ({
+  tabBarIcon: ({ color, size }) => {
+    let iconName: "newspaper-o" | "sun-o" = "newspaper-o";
+
+    if (route.name === "ニュース") {
+      iconName = "newspaper-o";
+    } else if (route.name === "天気予報") {
+      iconName = "sun-o";
+    }
+
+    return <FontAwesome name={iconName} color={color} size={size} />;
+  },
+  headerShown: false,
+});
+
+function App() {
+  return (
+    <NavigationContainer>
+      <Tab.Navigator screenOptions={screenOptions}>
+        <Tab.Screen name="ニュース" component={NewsStack} />
+        <Tab.Screen name="天気予報" component={WeatherStack} />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  box: {
-    height: 100,
-    width: "100%",
-    borderColor: "lightblue",
-    borderWidth: 1,
-    flexDirection: "row",
-  },
-  moziBox: {
-    flex: 1,
-    backgroundColor: "steelblue",
-    padding: 16,
-    justifyContent: "space-between",
-  },
-  gazoBox: {
-    width: 100,
-    backgroundColor: "powderblue",
-  },
-  text: {
-    fontSize: 16,
-  },
-  subText: {
-    fontSize: 12,
-    color: "red",
-  },
-});
+export default App;
