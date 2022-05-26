@@ -295,6 +295,7 @@ ReactNative は JavaScript ベースなので、Angular,Vue,React 等のフロ�
 
 ## 参考リンク
 
-[ReactNative 公式](https://reactnative.dev/)
-[expo 公式](https://docs.expo.dev/)
+[サンプルアプリとこのメモ](https://github.com/Yoshi034/react-native-sample-expo)  
+[ReactNative 公式](https://reactnative.dev/)  
+[expo 公式](https://docs.expo.dev/)  
 [TIS Fintan](https://fintan.jp/page/1425/)
