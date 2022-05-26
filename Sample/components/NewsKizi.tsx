@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 
-const NewsKizi = ({ imageurl, title, subtext, onPress }) => {
+export default function NewsKizi({ imageurl, title, subtext, onPress }) {
   const date: Date = new Date(subtext);
   const year: number = date.getFullYear();
   const month: number = date.getMonth() + 1;
@@ -20,9 +20,7 @@ const NewsKizi = ({ imageurl, title, subtext, onPress }) => {
       </View>
     </TouchableOpacity>
   );
-};
-
-export default NewsKizi;
+}
 
 const styles = StyleSheet.create({
   box: {
