@@ -1,4 +1,4 @@
-# ReactNative,expo を使ったクロスプラットフォームモバイルアプリ開発
+# ReactNativeとexpoでクロスプラットフォームモバイルアプリ開発
 
 ## ReactNative について
 
